@@ -4,9 +4,7 @@ from subprocess import (
     CalledProcessError,
     CompletedProcess,
     run,
-)  # , CalledProcessError WILL BE USED IN FUTURE
-
-# from pathlib import Path  # Optional: Need for cleaner paths
+)
 from loguru import logger
 
 
@@ -28,7 +26,6 @@ def find_ahk(name: str, path: str) -> str:
                     logger.warning(f"File on {found_path} is empty!")
                     return "File is empty"
 
-                # logger.success(file_inside.stdout)
                 return f"File Path: {found_path} | Script inside:\n{file_inside.stdout}"
 
             except CalledProcessError as error:
