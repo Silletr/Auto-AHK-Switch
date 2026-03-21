@@ -1,7 +1,9 @@
 # 🔀 Auto-AHK-Switch
 
 **What is using**:
-| Tool | Why |
+| ***Tool*** | _Why_ |
 | -------------- | --------------- |
-| loguru  | For logging everywhat (i dont know what exactly) |
-| xdotool, xbindkeys | Like a UNIX analogue to AHK (Sorry, didn't found native AHK port) |
+| `loguru`  | **For logging everywhat (i dont know what exactly)** |
+| `xdotool, xbindkeys` | **Like a UNIX analogue to AHK (Sorry, didn't found native AHK port)**|
+| `pystray` | **For creating Tray icon (Windows/Linux)** |
+| `keyboard` | **To capture keyboard  and then switch to other AHK/XdoTool script** |
