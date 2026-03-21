@@ -1,0 +1,10 @@
+version = 1
+
+[[analyzers]]
+name = "python"
+
+  [analyzers.meta]
+  type_checker = "mypy"
+  runtime_version = "3.x.x"
+  track_test_doc_coverage = false
+  cyclomatic_complexity_threshold = "medium"
