@@ -10,7 +10,7 @@ from loguru import logger
 
 # === Find AHK scripts on the most cummon places ===
 def find_ahk(name: str, path: str) -> str:
-    full_path = os.path.expanduser(path)  # Expand ~ to /home/UserName
+    full_path: str = os.path.expanduser(path)  # Expand ~ to /home/UserName
     logger.info(f"Searching from: {full_path}")
 
     for root, dirs, files in os.walk(top=full_path):
@@ -32,7 +32,8 @@ def find_ahk(name: str, path: str) -> str:
                 logger.error(f"STDERR: {error.stderr}")
                 return f"Error reading {found_path}"
 
-    raise FileNotFoundError(f"Script '{name}' not found starting from {full_path}!")
+    raise FileNotFoundError(
+        f"Script '{name}' not found starting from {full_path}!")
 
 
 def main() -> None:
