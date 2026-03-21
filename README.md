@@ -1,6 +1,9 @@
-# 🔀 Auto-AHK-Switch
+<h1 align="center">🔀 <bold>Auto AHK Switch</bold></h1>
 
-**What is using**:
+---
+## ❓ ***What it is using?***
+*Here is the list*:
+
 | ***Tool*** | _Why_ |
 | -------------- | --------------- |
 | `loguru`  | **For logging everywhat (i dont know what exactly)** |
