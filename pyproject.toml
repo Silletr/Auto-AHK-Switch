@@ -1,19 +1,19 @@
-[project]
+[tool.poetry]
 name = "ahk-switch"
 version = "0.1.0"
 description = "Switcher for your AHK scripts! Supports Windows GUI and Linux TUI/CLI!"
-authors = [
-    {name = "Silletr",email = "silletr@duck.com"}
-]
-license = {text = "MIT"}
-requires-python = ">=3.12"
-dependencies = [
-    "pystray (>=0.19.5,<0.20.0)",
-    "keyboard (>=0.13.5,<0.14.0)",
-    "plyer (>=2.1.0,<3.0.0)"
-]
+authors = ["Silletr <silletr@duck.com>"]
+packages = [{ include = "ahk-switch", from = "src" }]
+license = "MIT"
+readme = "README.md"
 
+[tool.poetry.dependencies]
+python = ">=3.12,<4.0"
+pystray = ">=0.19.5,<0.20.0"
+keyboard = ">=0.13.5,<0.14.0"
+plyer = ">=2.1.0,<3.0.0"
+loguru = ">=0.7.3,<0.8.0"
 
 [build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
+requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
