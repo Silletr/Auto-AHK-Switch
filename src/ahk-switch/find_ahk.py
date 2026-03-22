@@ -1,44 +1,34 @@
 import os
-
-from subprocess import (
-    CalledProcessError,
-    CompletedProcess,
-    run,
-)
 from loguru import logger
 
 
-# === Find AHK scripts on the most cummon places ===
-def find_ahk(name: str, path: str) -> str:
-    full_path: str = os.path.expanduser(path)  # Expand ~ to /home/UserName
+# === Find .ahk (BY DEFAULT) in ~/.silletr-ahk-switch/ BY DEFAULT ===
+def find_ahk(
+    path: str = "~/.silletr-ahk-switch/", extension: str = ".ahk"
+) -> list[str]:
+    full_path: str = os.path.expanduser(path)
     logger.info(f"Searching from: {full_path}")
 
+    found_scripts: list[str] = []
+
     for root, dirs, files in os.walk(top=full_path):
-        if name in files:
-            found_path: str = os.path.join(root, name)
-            logger.success(f"File found: {found_path}!")
-            try:
-                file_inside: CompletedProcess[str] = run(
-                    args=["cat", found_path], capture_output=True, text=True, check=True
-                )
+        for file in files:
+            if file.endswith(extension):
+                found_path: str = os.path.join(root, file)
+                logger.success(f"Found: {found_path}")
+                found_scripts.append(found_path)
 
-                if not file_inside.stdout.strip():  # Properly check empty/whitespace
-                    logger.warning(f"File on {found_path} is empty!")
-                    return "File is empty"
+    if not found_scripts:
+        raise FileNotFoundError(f"No {extension} scripts found in {full_path}")
 
-                return f"File Path: {found_path} | Script inside:\n{file_inside.stdout}"
-
-            except CalledProcessError as error:
-                logger.error(f"STDERR: {error.stderr}")
-                return f"Error reading {found_path}"
-
-    raise FileNotFoundError(
-        f"Script '{name}' not found starting from {full_path}!")
+    return found_scripts
 
 
 def main() -> None:
-    result: str = find_ahk(name="test.ahk", path="~/")
-    logger.info(result)
+    scripts: list[str] = find_ahk(path="~/.silletr-ahk-switch", extension=".ahk")
+    for script in scripts:
+        logger.info(script)
 
 
-main()
+if __name__ == "__main__":
+    main()
