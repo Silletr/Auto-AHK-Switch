@@ -25,7 +25,10 @@ def find_ahk(
 
 
 def main() -> None:
-    scripts: list[str] = find_ahk(path="~/.silletr-ahk-switch", extension=".ahk")
+    script_extension: str = input("Enter the needed script extension: \n")
+    scripts: list[str] = find_ahk(
+        path="~/.silletr-ahk-switch", extension=script_extension
+    )
     for script in scripts:
         logger.info(script)
 
