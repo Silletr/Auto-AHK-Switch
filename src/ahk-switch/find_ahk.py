@@ -11,7 +11,8 @@ def find_ahk(
 
     found_scripts: list[str] = []
 
-    for root, dirs, files in os.walk(top=full_path):
+    # pyright complaining on "dirs" variable
+    for root, dirs, files in os.walk(top=full_path):  # pyright: ignore
         for file in files:
             if file.endswith(extension):
                 found_path: str = os.path.join(root, file)
@@ -25,7 +26,9 @@ def find_ahk(
 
 
 def main() -> None:
-    script_extension: str = input("Enter the needed script extension: \n")
+    script_extension: str = input(
+        "Enter the needed script extension [DEFAULT: ~/.silletr-ahk-switch/]:\n"
+    )
     scripts: list[str] = find_ahk(
         path="~/.silletr-ahk-switch", extension=script_extension
     )
