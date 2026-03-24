@@ -1,0 +1,14 @@
+{
+  "pythonVersion": "3.12",
+  "venvPath": "/home/silletr/Projects",
+  "venv": "ProjectsEnv",
+  "include": ["src/ahk-switch"]
+}
+
+pyright = {
+  settings = {
+    python = {
+      pythonPath = "/home/silletr/Projects/ProjectsEnv/bin/python",
+    },
+  },
+},

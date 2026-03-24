@@ -10,9 +10,9 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = ">=3.12,<4.0"
 pystray = ">=0.19.5,<0.20.0"
-keyboard = ">=0.13.5,<0.14.0"
 plyer = ">=2.1.0,<3.0.0"
 loguru = ">=0.7.3,<0.8.0"
+keyboard = "^0.13.5"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
