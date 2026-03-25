@@ -1,20 +1,27 @@
 import os
+
 from loguru import logger
 
 
-# === Find .ahk (BY DEFAULT) in ~/.silletr-ahk-switch/ BY DEFAULT ===
+SUPPORTED = {".py", ".ahk"}
+
+
 def find_ahk(
-    path: str = "~/.silletr-ahk-switch/", extension: str = ".ahk"
+    path: str = "~/.silletr-ahk-switch/",
+    extension: str | set[str] = SUPPORTED,  # now accepts both
 ) -> list[str]:
     full_path: str = os.path.expanduser(path)
     logger.info(f"Searching from: {full_path}")
+
+    # normalize to set so we can do `in` check either way
+    exts: set[str] = {extension} if isinstance(extension, str) else set(extension)
 
     found_scripts: list[str] = []
 
     # pyright complaining on "dirs" variable
     for root, dirs, files in os.walk(top=full_path):  # pyright: ignore
         for file in files:
-            if file.endswith(extension):
+            if any(file.endswith(ext) for ext in exts):
                 found_path: str = os.path.join(root, file)
                 logger.success(f"Found: {found_path}")
                 found_scripts.append(found_path)
@@ -25,16 +32,5 @@ def find_ahk(
     return found_scripts
 
 
-def main() -> None:
-    script_extension: str = input(
-        "Enter the needed script extension [DEFAULT: ~/.silletr-ahk-switch/]:\n"
-    )
-    scripts: list[str] = find_ahk(
-        path="~/.silletr-ahk-switch", extension=script_extension
-    )
-    for script in scripts:
-        logger.info(script)
-
-
 if __name__ == "__main__":
-    main()
+    find_ahk()
