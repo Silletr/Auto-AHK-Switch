@@ -1,5 +1,5 @@
 # main.py (WSL2 version)
-from switch_ahk import switch
+from call_script import switch
 from find_ahk import find_ahk
 from pynput import keyboard as pynput_kb
 from loguru import logger
